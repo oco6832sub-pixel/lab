@@ -61,7 +61,7 @@ N_iterations = 100
 
 mgo_layer_number = 1
 fe_layer_number = 2
-confinement_cell_height_multiplyer = 4.0 # multiply env cell height
+confinement_cell_height_multiplyer = 4 # multiply env cell height
 
 """
 Concenstration controls. 
@@ -73,7 +73,7 @@ removed_num = 0
 num_candidates={0:[20,0], 10:[10,10], 25:[0,20]}
 sample_size = 20
 
-for seed in range(3):#103
+for seed in range(103):
 	print(F"Start seed: {seed}")
 	
 	path_result = f"seed_{seed}/0_result"
@@ -121,6 +121,8 @@ for seed in range(3):#103
 	slab_deposition = slab_feco.copy()
 	slab_substrate = slab_mgo.copy()
 	
+    
+	write('deposition.xsf',slab_deposition)
 	# Consentrations controls
 	slab_deposition = remove_random_atoms_by_species(slab_deposition, 'Fe', removed_num)
 	

@@ -1,0 +1,85 @@
+2026-05-26 17:29:34,926	INFO monitor.py:715 -- Starting monitor using ray installation: /home/shioi24/miniconda3/envs/gpaw/lib/python3.11/site-packages/ray/__init__.py
+2026-05-26 17:29:34,926	INFO monitor.py:716 -- Ray version: 2.55.1
+2026-05-26 17:29:34,926	INFO monitor.py:717 -- Ray commit: 237c2455ebb1ea15a32dd9e1fdeb2d617badc37f
+2026-05-26 17:29:34,926	INFO monitor.py:718 -- Monitor started with command: ['/home/shioi24/miniconda3/envs/gpaw/lib/python3.11/site-packages/ray/autoscaler/_private/monitor.py', '--logs-dir=/home/shioi24/lab/ray/session_2026-05-26_17-29-32_772098_21621/logs', '--logging-rotate-bytes=536870912', '--logging-rotate-backup-count=5', '--gcs-address=192.168.3.24:36161', '--stdout-filepath=/home/shioi24/lab/ray/session_2026-05-26_17-29-32_772098_21621/logs/monitor.out', '--stderr-filepath=/home/shioi24/lab/ray/session_2026-05-26_17-29-32_772098_21621/logs/monitor.err', '--monitor-ip=192.168.3.24']
+2026-05-26 17:29:34,933	INFO monitor.py:161 -- session_name: session_2026-05-26_17-29-32_772098_21621
+2026-05-26 17:29:34,934	INFO monitor.py:193 -- Starting autoscaler metrics server on port 44217
+2026-05-26 17:29:34,937	INFO monitor.py:218 -- Monitor: Started
+2026-05-26 17:29:34,945	INFO autoscaler.py:280 -- disable_node_updaters:False
+2026-05-26 17:29:34,946	INFO autoscaler.py:289 -- disable_launch_config_check:True
+2026-05-26 17:29:34,946	INFO autoscaler.py:301 -- foreground_node_launch:False
+2026-05-26 17:29:34,946	INFO autoscaler.py:311 -- worker_liveness_check:True
+2026-05-26 17:29:34,947	INFO autoscaler.py:361 -- StandardAutoscaler: {'cluster_name': 'default', 'max_workers': 0, 'upscaling_speed': 1.0, 'docker': {}, 'idle_timeout_minutes': 0, 'provider': {'type': 'readonly', 'use_node_id_as_ip': True, 'disable_launch_config_check': True}, 'auth': {}, 'available_node_types': {'ray.head.default': {'resources': {}, 'node_config': {}, 'max_workers': 0}}, 'head_node_type': 'ray.head.default', 'file_mounts': {}, 'cluster_synced_files': [], 'file_mounts_sync_continuously': False, 'rsync_exclude': [], 'rsync_filter': [], 'initialization_commands': [], 'setup_commands': [], 'head_setup_commands': [], 'worker_setup_commands': [], 'head_start_ray_commands': [], 'worker_start_ray_commands': []}
+2026-05-26 17:29:34,948	INFO monitor.py:393 -- Autoscaler has not yet received load metrics. Waiting.
+2026-05-26 17:29:39,951	INFO autoscaler.py:147 -- The autoscaler took 0.0 seconds to fetch the list of non-terminated nodes.
+2026-05-26 17:29:39,951	INFO autoscaler.py:408 -- 
+======== Autoscaler status: 2026-05-26 17:29:39.951574 ========
+Node status
+---------------------------------------------------------------
+Active:
+ 1 node_82a92378f944840657eca49978be6876cf30dbb75ee1a97392ece67d
+Pending:
+ (no pending nodes)
+Recent failures:
+ (no failures)
+
+Resources
+---------------------------------------------------------------
+Total Usage:
+ 0.0/16.0 CPU
+ 0B/29.80GiB memory
+ 0B/7.45GiB object_store_memory
+
+From request_resources:
+ (none)
+Pending Demands:
+ (no resource demands)
+2026-05-26 17:29:39,952	INFO autoscaler.py:469 -- The autoscaler took 0.001 seconds to complete the update iteration.
+2026-05-26 17:29:44,957	INFO autoscaler.py:147 -- The autoscaler took 0.0 seconds to fetch the list of non-terminated nodes.
+2026-05-26 17:29:44,957	INFO autoscaler.py:408 -- 
+======== Autoscaler status: 2026-05-26 17:29:44.957354 ========
+Node status
+---------------------------------------------------------------
+Active:
+ 1 node_82a92378f944840657eca49978be6876cf30dbb75ee1a97392ece67d
+Pending:
+ (no pending nodes)
+Recent failures:
+ (no failures)
+
+Resources
+---------------------------------------------------------------
+Total Usage:
+ 16.0/16.0 CPU (16.0 used of 16.0 reserved in placement groups)
+ 0B/29.80GiB memory
+ 16.81KiB/7.45GiB object_store_memory
+
+From request_resources:
+ (none)
+Pending Demands:
+ (no resource demands)
+2026-05-26 17:29:44,959	INFO autoscaler.py:469 -- The autoscaler took 0.002 seconds to complete the update iteration.
+2026-05-26 17:29:49,962	INFO autoscaler.py:147 -- The autoscaler took 0.0 seconds to fetch the list of non-terminated nodes.
+2026-05-26 17:29:49,963	INFO autoscaler.py:408 -- 
+======== Autoscaler status: 2026-05-26 17:29:49.963217 ========
+Node status
+---------------------------------------------------------------
+Active:
+ 1 node_82a92378f944840657eca49978be6876cf30dbb75ee1a97392ece67d
+Pending:
+ (no pending nodes)
+Recent failures:
+ (no failures)
+
+Resources
+---------------------------------------------------------------
+Total Usage:
+ 16.0/16.0 CPU (16.0 used of 16.0 reserved in placement groups)
+ 0B/29.80GiB memory
+ 16.81KiB/7.45GiB object_store_memory
+
+From request_resources:
+ (none)
+Pending Demands:
+ (no resource demands)
+2026-05-26 17:29:49,964	INFO autoscaler.py:469 -- The autoscaler took 0.001 seconds to complete the update iteration.
