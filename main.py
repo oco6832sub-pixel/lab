@@ -73,7 +73,7 @@ removed_num = 0
 num_candidates={0:[20,0], 10:[10,10], 25:[0,20]}
 sample_size = 20
 
-for seed in range(103):
+for seed in range(3):#103
 	print(F"Start seed: {seed}")
 	
 	path_result = f"seed_{seed}/0_result"
@@ -123,6 +123,7 @@ for seed in range(103):
 	
     
 	write('deposition.xsf',slab_deposition)
+	write('substrate.xsf',slab_substrate)
 	# Consentrations controls
 	slab_deposition = remove_random_atoms_by_species(slab_deposition, 'Fe', removed_num)
 	
