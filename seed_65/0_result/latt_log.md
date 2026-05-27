@@ -1,4 +1,0 @@
-a_feco=2.843
-a_mgo=4.212
-a_mgo_matched=2.978333762357738
-strain=4.76%
