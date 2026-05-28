@@ -1,0 +1,272 @@
+
+  ___ ___ ___ _ _ _  
+ |   |   |_  | | | | 
+ | | | | | . | | | | 
+ |__ |  _|___|_____|  25.7.0
+ |___|_|             
+
+User:   shioi24@ncm24
+Date:   Thu May 28 12:48:32 2026
+Arch:   x86_64
+Pid:    28272
+CWD:    /home/shioi24/optimize_lattice
+Python: 3.11.13
+gpaw:   /home/shioi24/miniconda3/envs/gpaw/lib/python3.11/site-packages/gpaw
+_gpaw:  /home/shioi24/miniconda3/envs/gpaw/lib/python3.11/site-packages/
+        _gpaw.cpython-311-x86_64-linux-gnu.so
+ase:    /home/shioi24/miniconda3/envs/gpaw/lib/python3.11/site-packages/ase (version 3.26.0)
+numpy:  /home/shioi24/miniconda3/envs/gpaw/lib/python3.11/site-packages/numpy (version 1.26.4)
+scipy:  /home/shioi24/miniconda3/envs/gpaw/lib/python3.11/site-packages/scipy (version 1.17.1)
+libxc:  2.x.y
+units:  Angstrom and eV
+cores: 1
+OpenMP: False
+OMP_NUM_THREADS: 1
+
+Input parameters:
+  basis: dzp
+  hund: True
+  kpts: [8 8 8]
+  maxiter: 300
+  mixer: {backend: pulay,
+          beta: 0.02,
+          nmaxold: 3,
+          weight: 10}
+  mode: {name: lcao}
+  nbands: nao
+  occupations: {name: fermi-dirac,
+                width: 0.2}
+  spinpol: True
+  symmetry: off
+  xc: PBE
+
+System changes: positions, numbers, cell, pbc, initial_charges, initial_magmoms 
+
+Initialize ...
+
+species:
+  Fe:
+    name: Iron
+    id: 37abbd8d6c3c35915a9b583b742da910
+    Z: 26.0
+    valence: 8
+    core: 18
+    charge: 0.0
+    file: /home/shioi24/miniconda3/envs/gpaw/lib/python3.11/site-packages/gpaw_data/setups/Fe.PBE.gz
+    compensation charges: {type: gauss,
+                           rc: 0.33,
+                           lmax: 2}
+    cutoffs: {filter: 2.06,
+              core: 2.67}
+    projectors:
+      #              energy  rcut
+      - 4s(2.00)    -5.291   1.164
+      - 4p(0.00)    -1.326   1.058
+      - 3d(6.00)    -7.505   1.058
+      -  s          21.920   1.164
+      -  p          25.885   1.058
+      -  d          19.706   1.058
+  
+    # LCAO basis set for Fe:
+    #   Name: dzp
+    #   File: /home/shioi24/miniconda3/envs/gpaw/lib/python3.11/site-packages/gpaw_data/setups/Fe.dzp.basis.gz
+    #   Number of radial functions: 5
+    #   Number of spherical harmonics: 15
+    #     l=0, rc=8.9688 Bohr: 4s-sz confined orbital
+    #     l=2, rc=5.1719 Bohr: 3d-sz confined orbital
+    #     l=0, rc=5.3281 Bohr: 4s-dz split-valence wave
+    #     l=2, rc=3.0938 Bohr: 3d-dz split-valence wave
+    #     l=1, rc=8.9688 Bohr: p-type Gaussian polarization
+    #   Number of RI-basis functions 0
+
+  Co:
+    name: Cobalt
+    id: 339d20d5b0b93d2de9531a1bee871d91
+    Z: 27.0
+    valence: 9
+    core: 18
+    charge: 0.0
+    file: /home/shioi24/miniconda3/envs/gpaw/lib/python3.11/site-packages/gpaw_data/setups/Co.PBE.gz
+    compensation charges: {type: gauss,
+                           rc: 0.32,
+                           lmax: 2}
+    cutoffs: {filter: 1.87,
+              core: 2.55}
+    projectors:
+      #              energy  rcut
+      - 4s(2.00)    -5.469   1.005
+      - 4p(0.00)    -1.277   1.058
+      - 3d(7.00)    -8.205   1.005
+      -  s          21.742   1.005
+      -  p          25.934   1.058
+      -  d          19.007   1.005
+  
+    # LCAO basis set for Co:
+    #   Name: dzp
+    #   File: /home/shioi24/miniconda3/envs/gpaw/lib/python3.11/site-packages/gpaw_data/setups/Co.dzp.basis.gz
+    #   Number of radial functions: 5
+    #   Number of spherical harmonics: 15
+    #     l=0, rc=8.5156 Bohr: 4s-sz confined orbital
+    #     l=2, rc=4.9375 Bohr: 3d-sz confined orbital
+    #     l=0, rc=5.0625 Bohr: 4s-dz split-valence wave
+    #     l=2, rc=2.9375 Bohr: 3d-dz split-valence wave
+    #     l=1, rc=8.5156 Bohr: p-type Gaussian polarization
+    #   Number of RI-basis functions 0
+
+Reference energy: -72522.164506  # eV
+
+Spin-polarized calculation.
+Initial magnetic moment: 7.000000
+
+Convergence criteria:
+ Maximum [total energy] change in last 3 cyles: 0.0005 eV / valence electron
+ Maximum integral of absolute [dens]ity change: 0.0001 electrons / valence electron
+ Maximum integral of absolute [eigenst]ate change: 4e-08 eV^2 / valence electron
+ Maximum number of scf [iter]ations: 300
+ (Square brackets indicate name in SCF output, whereas a 'c' in
+ the SCF output indicates the quantity has converged.)
+
+Symmetries present (total): 1
+
+  ( 1  0  0)
+  ( 0  1  0)
+  ( 0  0  1)
+
+512 k-points: 8 x 8 x 8 Monkhorst-Pack grid
+512 k-points in the irreducible part of the Brillouin zone
+       k-points in crystal coordinates                weights
+   0:    -0.43750000   -0.43750000   -0.43750000          1/512
+   1:    -0.43750000   -0.43750000   -0.31250000          1/512
+   2:    -0.43750000   -0.43750000   -0.18750000          1/512
+   3:    -0.43750000   -0.43750000   -0.06250000          1/512
+   4:    -0.43750000   -0.43750000    0.06250000          1/512
+   5:    -0.43750000   -0.43750000    0.18750000          1/512
+   6:    -0.43750000   -0.43750000    0.31250000          1/512
+   7:    -0.43750000   -0.43750000    0.43750000          1/512
+   8:    -0.43750000   -0.31250000   -0.43750000          1/512
+   9:    -0.43750000   -0.31250000   -0.31250000          1/512
+          ...
+ 511:     0.43750000    0.43750000    0.43750000          1/512
+
+Wave functions: LCAO
+  Diagonalizer: Serial LAPACK
+  Atomic Correction: dense with blas
+  Data-type: complex
+ 
+
+Occupation numbers: Fermi-Dirac:
+  width: 0.2000  # eV
+ 
+
+Eigensolver
+   LCAO using direct dense diagonalizer 
+
+Densities:
+  Coarse grid: 16*16*16 grid
+  Fine grid: 32*32*32 grid
+  Total Charge: 0.000000 
+
+Density mixing:
+  Method: difference
+  Backend: pulay
+  Linear mixing parameter: 0.02
+  old densities: 3
+  Damping of long wavelength oscillations: 10 
+
+Hamiltonian:
+  XC and Coulomb potentials evaluated on a 32*32*32 grid
+  Using the PBE Exchange-Correlation functional
+  Interpolation: tri-quintic (5. degree polynomial)
+  Poisson solver: FastPoissonSolver using
+    Stencil: 6*3+1=19 point O(h^6) finite-difference Laplacian
+    FFT axes: [0, 1, 2]
+    FST axes: []
+ 
+
+XC parameters: PBE with 2 nearest neighbor stencil
+
+Memory estimate:
+  Process memory now: 420.46 MiB
+  Calculator: 39.36 MiB
+    Density: 10.37 MiB
+      Arrays: 1.09 MiB
+      Localized functions: 8.96 MiB
+      Mixer: 0.31 MiB
+    Hamiltonian: 1.48 MiB
+      Arrays: 0.81 MiB
+      XC: 0.00 MiB
+      Poisson: 0.00 MiB
+      vbar: 0.67 MiB
+    Wavefunctions: 27.50 MiB
+      C [qnM]: 7.03 MiB
+      S, T [2 x qmm]: 14.06 MiB
+      P [aqMi]: 0.53 MiB
+      BasisFunctions: 5.88 MiB
+      Eigensolver: 0.00 MiB
+
+Total number of cores used: 1
+
+Number of atoms: 2
+Number of atomic orbitals: 30
+Number of bands in calculation: 30
+Number of valence electrons: 17
+Bands to converge: occupied
+
+... initialized
+
+Initializing position-dependent things.
+
+Density initialized from atomic densities
+   .------.  
+  /|      |  
+ * |      |  
+ | |  Co  |  
+ | .------.  
+ |/      /   
+ Fe-----*    
+
+Atomic positions and initial magnetic moments
+
+Positions:
+   0 Fe     0.000000    0.000000    0.000000    ( 0.0000,  0.0000,  4.0000)
+   1 Co     1.437500    1.437500    1.437500    ( 0.0000,  0.0000,  3.0000)
+
+Unit cell:
+           periodic     x           y           z      points  spacing
+  1. axis:    yes    2.875000    0.000000    0.000000    16     0.1797
+  2. axis:    yes    0.000000    2.875000    0.000000    16     0.1797
+  3. axis:    yes    0.000000    0.000000    2.875000    16     0.1797
+
+  Lengths:   2.875000   2.875000   2.875000
+  Angles:   90.000000  90.000000  90.000000
+
+Effective grid spacing dv^(1/3) = 0.1797
+
+     iter     time        total  log10-change:  magmom
+                         energy   eigst   dens
+iter:   1 12:49:08   -15.880073        c          +6.9399
+iter:   2 12:54:30   -16.943349        c -1.39    +5.4200
+iter:   3 12:59:52   -17.547590        c -1.38    +4.3160
+iter:   4 13:05:14   -16.856356        c -1.32    +4.1949
+iter:   5 13:10:36   -16.678661        c -1.45    +4.1948
+iter:   6 13:16:08   -16.591924        c -1.53    +4.1718
+iter:   7 13:21:39   -16.288968        c -1.59    +4.2415
+iter:   8 13:27:06   -16.279814        c -1.81    +4.2355
+iter:   9 13:32:35   -16.315698        c -1.83    +4.3293
+iter:  10 13:38:02   -16.324422        c -1.93    +4.3144
+iter:  11 13:43:25   -16.360901        c -1.93    +4.3318
+iter:  12 13:48:50   -16.755637        c -1.85    +4.3568
+iter:  13 13:54:13   -16.357522        c -1.47    +4.3359
+iter:  14 13:59:43   -16.088832        c -1.90    +4.3191
+iter:  15 14:05:07   -16.567755        c -2.16    +4.3670
+iter:  16 14:10:32   -16.730402        c -1.57    +4.3963
+iter:  17 14:15:53   -16.636693        c -1.36    +4.3989
+iter:  18 14:21:19   -16.611774        c -1.39    +4.3907
+iter:  19 14:26:44   -16.425523        c -1.40    +4.3841
+iter:  20 14:32:08   -15.963535        c -1.45    +4.3881
+iter:  21 14:37:35   -15.970868        c -1.94    +4.3860
+iter:  22 14:42:55   -15.892483        c -2.21    +4.4091
+iter:  23 14:48:22   -16.680772        c -2.13    +4.2493
+iter:  24 14:53:46   -16.752777        c -1.55    +4.2815
+iter:  25 14:59:12   -16.814221        c -1.43    +4.2939
+iter:  26 15:04:35   -17.004355        c -1.42    +4.3051
