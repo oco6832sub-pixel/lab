@@ -30,42 +30,44 @@ from scripts.plot_structure import plot_structure
 from scripts.build_heteroStruct import build_heteroStruct
 from scripts.remove_random_atoms_by_species import remove_random_atoms_by_species
 
+from scripts.feco_randamize_generater import feco_randamize_generater
 # from icecream import ic
 
 vacuum = 20
 a_mgo = 4.212
-a_feco =  2.843 #optimize later
+a_fe =  2.839177
+n_co = 7
 
 a_mgo_matched = a_mgo / np.sqrt(2)
-strain = (a_mgo_matched - a_feco) / a_feco * 100
+strain = (a_mgo_matched - a_fe) / a_fe * 100
 
 """
-interpolation_factor
-0.0 = FeCo lattice
-1.0 = MgO lattice
+Control Strain
+0.0 = Fe lattice
+1.0 = Fe stretch to fit MgO
 
 Simul: 
 0, 0.25, 0.5, 0.75, 1
 """
 
-interpolation_factor = 0
-a_custom = a_feco + interpolation_factor * (a_mgo_matched - a_feco)
+interpolation_factor = 1
+a_custom = a_fe + interpolation_factor * (a_mgo_matched - a_fe)
 
-dist_z_fe2o = 0.5 # 2.3 # experimental: 2.3 A
-ncores = 1 #16 #24; 16 cores for genkai
-supercell = (2,2,1) # (5 , 5, 1)
+dist_z_fe2o = 0.5 # experimental: 2.3 A
+ncores = 1 #24; 16 cosres for genkai
+supercell = (5 , 5, 1)
 kpts = (1, 1, 1)
 
 kappa=2
 N_iterations = 100
 
 mgo_layer_number = 1
-fe_layer_number = 2
+fe_layer_number = 1
 confinement_cell_height_multiplyer = 4 # multiply env cell height
 
 """
 Concenstration controls. 
-Removing atoms.
+Removing atoms.cond
 5x5 1 monolayer is 25 atoms (Fe layer). Remove 25 remove one monolayer.
 """
 removed_num = 0 
@@ -73,7 +75,7 @@ removed_num = 0
 num_candidates={0:[20,0], 10:[10,10], 25:[0,20]}
 sample_size = 20
 
-for seed in range(3):#103
+for seed in range(103):
 	print(F"Start seed: {seed}")
 	
 	path_result = f"seed_{seed}/0_result"
@@ -86,7 +88,7 @@ for seed in range(3):#103
 		os.makedirs(d, exist_ok=True)
 		
 	with open(latt_log, 'w') as f:
-		f.write(f"{a_feco=}\n{a_mgo=}\n{a_mgo_matched=}\n{strain=:.2f}%\n")
+		f.write(f"{a_fe=}\n{a_mgo=}\n{a_mgo_matched=}\n{strain=:.2f}%\n")
 		
 	bulk_mgo = bulk('MgO', 'rocksalt', a=a_mgo, cubic=True)
 	slab_mgo = surface(bulk_mgo, (0,0,1), layers=1, vacuum=vacuum)
@@ -116,14 +118,16 @@ for seed in range(3):#103
 
 	slab_mgofe = build_mgo_stack(slab_feco_base, num_layers=mgo_layer_number, dist_mgo=dist_mgo, vacuum=vacuum, output_path=f"{path_xsf}/slab_mgofe.xsf")
 	slab_mgo = slab_mgofe[[atom.symbol not in ['Fe', 'Co'] for atom in slab_mgofe]].repeat(supercell)
-	slab_feco = build_fe_stack(slab_feco_base, num_layers=fe_layer_number, vacuum=vacuum, output_path=f"{path_xsf}/slab_fe.xsf").repeat(supercell)
-	
+	#slab_feco = build_fe_stack(slab_feco_base, num_layers=fe_layer_number, vacuum=vacuum, output_path=f"{path_xsf}/slab_fe.xsf").repeat(supercell)
+	slab_feco = feco_randamize_generater(
+    slab_feco_base,
+    n_co,
+    supercell=(5,5,1)
+	)
+
 	slab_deposition = slab_feco.copy()
 	slab_substrate = slab_mgo.copy()
 	
-    
-	write('deposition.xsf',slab_deposition)
-	write('substrate.xsf',slab_substrate)
 	# Consentrations controls
 	slab_deposition = remove_random_atoms_by_species(slab_deposition, 'Fe', removed_num)
 	
@@ -152,7 +156,7 @@ for seed in range(3):#103
 			**environment.get_confinement(),
 			slab_deposition=slab_deposition,
 			hetero_slab_dist=dist_z_fe2o,
-			rattle_amplitude=0.5,
+			rattle_amplitude=1.5,
 			n_rattle=n_rattle,
 			generate_pristine=False,
 			write_struct=True,
@@ -160,7 +164,7 @@ for seed in range(3):#103
 		RattleGenerator(
 			**environment.get_confinement(),
 			n_rattle=int(n_rattle * 0.5),
-			rattle_amplitude=0.5
+			rattle_amplitude=2.3
 		),
 	]
 	
@@ -202,26 +206,14 @@ for seed in range(3):#103
 		mode={"name": "lcao"},
 		basis="dzp",
 		xc="PBE",
-		#mixer={"backend": "pulay", "beta": 0.05, "nmaxold": 5, "weight": 50},
-
-		mixer={
-		"backend": "pulay",
-		"beta": 0.02,
-		"nmaxold": 3,
-		"weight": 10
-		}, #change ver4
-
+		mixer={"backend": "pulay", "beta": 0.05, "nmaxold": 5, "weight": 50},
 		convergence={"energy": 1e-3, "density": 1e-3, "eigenstates": 1e-3},
 		txt=f"output_seed_{seed}.txt",
 		kpts=kpts,
 		symmetry='off',
 		nbands='nao',
-		#maxiter=100,
-		#occupations={"name": "fermi-dirac", "width": 0.10},
-
-		occupations={"name": "fermi-dirac", "width": 0.2}, #change ver4
-		maxiter=300, #change ver4
-
+		maxiter=100,
+		occupations={"name": "fermi-dirac", "width": 0.10},
 		hund=True,
 		spinpol=True
 	)
@@ -237,4 +229,3 @@ for seed in range(3):#103
 	
 	agox = AGOX(collector, relaxer, acquisitor, evaluator, database, seed=seed)
 	agox.run(N_iterations=N_iterations)
-
